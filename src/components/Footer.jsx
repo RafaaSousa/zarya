@@ -8,7 +8,20 @@ export default function Footer() {
         
         {/* Brand */}
         <div className="flex flex-col gap-4">
-          <span className="font-display text-2xl font-bold text-primary">Zaryá Ótica</span>
+          <Link 
+            className="flex items-center gap-2 " 
+            to="/"
+          >
+            <img 
+              alt="Zaryá Ótica Logo" 
+              className="h-10 md:h-12 w-auto object-contain" 
+              src="/logo/logo horizontal_color.svg"
+              onError={(e) => {
+                // fallback if svg fails or is not parsed
+                e.target.src = "https://lh3.googleusercontent.com/aida-public/AB6AXuD7jz3ZptAhxybLaDXjrtfrP_VcgV3gOhHfWY1VSjFCoeVOisRKSRrhh0u8rMhh2JJ294xMCMQAGVO0vT6FQcmvA8teNh3VJlp7vgWWyA9fTx8GfPtDYhsTroXAv-r6S46-S7RqX5rIJ4ZEQH1-k80btvVfxo3VaWSTJkQHStbtMYCpfTRS0L6KNYSOMrWP6CgiRoveHxkwGQD4wJHo-xAi17REHXtl_8LsRqCAqNdRfY3tnsjCSNlAdg_o3QwJPNGXUJLfPlIRsOI";
+              }}
+            />
+          </Link>
           <p className="font-body text-sm text-on-surface-variant max-w-xs">
             Transformando a forma como as pessoas enxergam sua rotina e sua qualidade visual.
           </p>

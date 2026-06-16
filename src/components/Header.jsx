@@ -59,7 +59,20 @@ export default function Header() {
           }`}
         >
           <div className="p-6 border-b border-outline-variant/30 flex justify-between items-center">
-            <span className="font-display text-2xl text-primary font-bold">Zaryá</span>
+            <Link 
+            className="flex items-center gap-2" 
+            to="/"
+          >
+            <img 
+              alt="Zaryá Ótica Logo" 
+              className="h-10 md:h-12 w-auto object-contain" 
+              src="/logo/logo horizontal_color.svg"
+              onError={(e) => {
+                // fallback if svg fails or is not parsed
+                e.target.src = "https://lh3.googleusercontent.com/aida-public/AB6AXuD7jz3ZptAhxybLaDXjrtfrP_VcgV3gOhHfWY1VSjFCoeVOisRKSRrhh0u8rMhh2JJ294xMCMQAGVO0vT6FQcmvA8teNh3VJlp7vgWWyA9fTx8GfPtDYhsTroXAv-r6S46-S7RqX5rIJ4ZEQH1-k80btvVfxo3VaWSTJkQHStbtMYCpfTRS0L6KNYSOMrWP6CgiRoveHxkwGQD4wJHo-xAi17REHXtl_8LsRqCAqNdRfY3tnsjCSNlAdg_o3QwJPNGXUJLfPlIRsOI";
+              }}
+            />
+          </Link>
             <button 
               className="p-2 text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors"
               onClick={toggleDrawer}
