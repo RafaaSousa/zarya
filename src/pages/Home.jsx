@@ -232,7 +232,7 @@ export default function Home() {
                 <img
                   alt="Especialista Zaryá Ótica na loja com equipamentos e armações"
                   className="inset-0 w-full h-full object-cover object-center"
-                  src="public/zarya-optico.jpg"
+                  src="/zarya-optico.jpg"
                 />
               </div>
             </div>
