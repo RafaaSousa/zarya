@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Define default custom variables if needed */
+}
+
+body {
+  margin: 0;
+  background-color: #F7F4EF;
+  color: #1f1b13;
+}
+
+/* Custom mask shapes */
+.arch-mask {
+  border-radius: 200px 200px 0 0;
+}
+
+@media (min-width: 768px) {
+  .arch-mask {
+    border-radius: 400px 400px 0 0;
+  }
+}
+
+.arch-mask-ellipse {
+  clip-path: ellipse(50% 100% at 50% 100%);
+}
+
+.arch-mask-ellipse-top {
+  clip-path: ellipse(50% 100% at 50% 0%);
+}
+
+.arch-mask-polygon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%);
+  border-radius: 12px 12px 0 0;
+}
+
+.capsule-mask {
+  border-radius: 9999px;
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(115, 92, 0, 0.05);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.header-whatsapp-button[aria-disabled="true"] {
+  background-color: #eae1d4;
+  color: #1f1b13;
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+
+.header-whatsapp-button[aria-disabled="true"]:hover,
+.header-whatsapp-button[aria-disabled="true"]:active {
+  background-color: #eae1d4;
+  box-shadow: none;
+  transform: none;
+}
+
+.header-whatsapp-button[aria-disabled="true"] svg {
+  opacity: 0.65;
+}

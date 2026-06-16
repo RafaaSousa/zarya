@@ -1,0 +1,242 @@
+import React, { useState } from "react";
+
+export default function Contato() {
+  const [formData, setFormData] = useState({
+    companyName: "",
+    contactName: "",
+    cnpj: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // In a real application, you would send this to a backend API.
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+      setFormData({
+        companyName: "",
+        contactName: "",
+        cnpj: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      });
+    }, 5000);
+  };
+
+  return (
+    <div className="bg-background text-on-surface font-body overflow-x-hidden">
+      <main className="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 flex flex-col md:grid md:grid-cols-12 md:gap-8">
+        
+        {/* Page Title & Banner Image */}
+        <section className="col-span-12 mb-8">
+          <div className="relative w-full h-[250px] md:h-[300px] arch-mask overflow-hidden shadow-md mb-4 border border-[#D4AF37]/20">
+            <img 
+              alt="Boutique interior" 
+              className="w-full h-full object-cover" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3U3Qqy0tAce_DwhcTRHANyeqPxtR2kOuqFRdgtpB-R65-Frbgy-0XgjYw4sBEQGEr94lYNuA4QT4EJpV4kGu3MFTgMcxBgHe7gvvamoWjV_cS96DkYhSoXwVE_uEiywUXevw__jJTVc09NdGyE_JhHWMZx3QKjaHvk_ZOzjC1R6jdxtPeITQx3SNd7YuUWY-myeMKKOBbfIXeNz_BI6L0vUU8Rn2xFWExicpQbeRgcdOvAprFnUUbFK1k7Vfw_MAASWqz18gglyE"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60"></div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <h2 className="font-display text-3xl md:text-4xl text-primary font-bold tracking-tight">Fale Conosco</h2>
+              <p className="font-body text-sm text-on-surface-variant mt-2">Estamos prontos para iluminar sua visão.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Quick Actions (Sidebar) */}
+        <section className="col-span-12 md:col-span-4 flex flex-col gap-6 mb-8 md:mb-0">
+          <h3 className="font-display text-xl text-on-background font-bold border-b border-primary/20 pb-2">
+            Atendimento Rápido
+          </h3>
+          
+          <a 
+            href="https://wa.me/5511999999999" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-4 bg-surface rounded-xl shadow-md border border-outline-variant/30 hover:border-primary transition-all group"
+          >
+            <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span className="material-symbols-outlined">forum</span>
+            </div>
+            <div>
+              <span className="block font-body text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">WhatsApp</span>
+              <span className="block font-body text-sm font-semibold text-on-surface">+55 (11) 99999-9999</span>
+            </div>
+          </a>
+
+          <a 
+            href="tel:+551133333333" 
+            className="flex items-center gap-4 p-4 bg-surface rounded-xl shadow-md border border-outline-variant/30 hover:border-primary transition-all group"
+          >
+            <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+              <span className="material-symbols-outlined">call</span>
+            </div>
+            <div>
+              <span className="block font-body text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Telefone Fixo</span>
+              <span className="block font-body text-sm font-semibold text-on-surface">+55 (11) 3333-3333</span>
+            </div>
+          </a>
+
+          <div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
+            <h4 className="font-body text-xs font-bold text-primary uppercase tracking-wider mb-3">Horário de Funcionamento</h4>
+            <ul className="font-body text-xs text-on-surface-variant space-y-2">
+              <li className="flex justify-between"><span>Segunda - Sexta:</span> <span className="font-semibold text-on-surface">09:00 - 18:00</span></li>
+              <li className="flex justify-between"><span>Sábado:</span> <span className="font-semibold text-on-surface">09:00 - 13:00</span></li>
+              <li className="flex justify-between"><span>Domingo:</span> <span className="font-semibold text-on-surface">Fechado</span></li>
+            </ul>
+          </div>
+
+          <div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
+            <h4 className="font-body text-xs font-bold text-primary uppercase tracking-wider mb-2">Endereço</h4>
+            <p className="font-body text-xs text-on-surface-variant leading-relaxed">
+              Av. Paulista, 1000 - Bela Vista<br />São Paulo - SP, 01310-100
+            </p>
+            <a 
+              href="https://maps.google.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-block mt-2 font-body text-xs font-bold text-primary underline hover:text-[#554300]"
+            >
+              Ver no mapa
+            </a>
+          </div>
+        </section>
+
+        {/* Contact Form */}
+        <section className="col-span-12 md:col-span-8">
+          <div className="bg-surface p-6 md:p-8 rounded-xl shadow-md border border-outline-variant/20">
+            <h3 className="font-display text-xl md:text-2xl text-on-background font-bold mb-2">
+              Solicitação para Empresas (B2B)
+            </h3>
+            <p className="font-body text-sm text-on-surface-variant mb-6">
+              Preencha os dados abaixo para atendimento corporativo. Entraremos em contato em até 24 horas.
+            </p>
+            
+            {success ? (
+              <div className="bg-[#D4AF37]/20 border border-[#D4AF37] text-on-surface p-8 rounded-lg text-center font-body my-12">
+                <span className="material-symbols-outlined text-5xl text-primary mb-3 block">verified</span>
+                <strong className="block text-xl mb-1">Mensagem Recebida!</strong>
+                Agradecemos o seu contato. Nossa equipe entrará em contato em breve para prosseguir com o seu atendimento.
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="companyName">Nome da Empresa</label>
+                  <input 
+                    required
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" 
+                    id="companyName" 
+                    placeholder="Ex: Óticas Modelo Ltda" 
+                    type="text"
+                  />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="contactName">Nome do Contato</label>
+                    <input 
+                      required
+                      value={formData.contactName}
+                      onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                      className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" 
+                      id="contactName" 
+                      placeholder="Seu nome completo" 
+                      type="text"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="cnpj">CNPJ</label>
+                    <input 
+                      required
+                      value={formData.cnpj}
+                      onChange={(e) => setFormData({ ...formData, cnpj: e.target.value })}
+                      className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" 
+                      id="cnpj" 
+                      placeholder="00.000.000/0000-00" 
+                      type="text"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="email">E-mail Corporativo</label>
+                    <input 
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" 
+                      id="email" 
+                      placeholder="contato@empresa.com.br" 
+                      type="email"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="phone">Telefone / WhatsApp</label>
+                    <input 
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" 
+                      id="phone" 
+                      placeholder="(00) 00000-0000" 
+                      type="tel"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="subject">Assunto</label>
+                  <select 
+                    required
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" 
+                    id="subject"
+                  >
+                    <option value="">Selecione o motivo do contato</option>
+                    <option value="catalogo">Solicitar Catálogo</option>
+                    <option value="parceria">Parceria B2B</option>
+                    <option value="suporte">Suporte a Lojistas</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="message">Mensagem</label>
+                  <textarea 
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none" 
+                    id="message" 
+                    placeholder="Detalhe sua solicitação aqui..." 
+                    rows={4}
+                  />
+                </div>
+                
+                <button 
+                  className="w-full bg-primary hover:bg-[#554300] text-on-primary font-body text-xs font-bold py-4 px-6 rounded-lg transition-colors shadow-md flex justify-center items-center gap-2" 
+                  type="submit"
+                >
+                  <span>Enviar Mensagem</span>
+                  <span className="material-symbols-outlined text-[18px]">send</span>
+                </button>
+              </form>
+            )}
+          </div>
+        </section>
+
+      </main>
+    </div>
+  );
+}
