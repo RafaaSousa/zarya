@@ -127,8 +127,7 @@ export default function ProjetoCorporativo() {
         <div ref={servicesRef} className="max-w-[1280px] mx-auto px-4 md:px-10 flex flex-col items-center gap-10">
           <div className="text-center flex flex-col gap-3 max-w-2xl anim-fade-up">
             <h2
-              className="font-display text-4xl md:text-5xl font-normal"
-              style={{ color: "#2C2A24" }}
+              className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]"
             >
               Ações In-Company &amp; SIPAT
             </h2>

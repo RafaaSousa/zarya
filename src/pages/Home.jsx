@@ -240,7 +240,7 @@ function Valores() {
           <span className="font-body text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
             Nossos Valores
           </span>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-normal text-on-surface leading-none">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-normal leading-none text-[#C9A227]">
             O que nos<br />
             <span style={{ color: "#C9A227" }}>move todo dia.</span>
           </h2>
@@ -305,7 +305,7 @@ function ComoFunciona() {
           <span className="font-body text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
             Processo
           </span>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-normal text-on-surface leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-normal text-[#C9A227] leading-tight">
             O que acontece quando a<br />
             <span style={{ color: "#C9A227" }}>empresa contrata a Zaryá?</span>
           </h2>
@@ -370,7 +370,7 @@ function IdealPara() {
           <span className="font-body text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
             Segmentos
           </span>
-          <h2 className="font-display text-5xl md:text-6xl font-normal text-on-surface">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]">
             Ideal para
           </h2>
         </div>
