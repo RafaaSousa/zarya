@@ -129,11 +129,10 @@ export default function ProjetoCorporativo() {
             <h2
               className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]"
             >
-              Ações In-Company &amp; <span className="font-sans font-extralight">SIPAT</span>
+             Ação corporativa
             </h2>
             <p className="font-body text-sm md:text-base text-on-surface-variant">
-              Levamos o cuidado visual diretamente para sua empresa. Nossa ótica móvel
-              transforma semanas de prevenção em experiências memoráveis de saúde integrativa.
+              Levamos o cuidado visual diretamente para sua empresa. Em SIPATs, campanhas internas e ações corporativas, oferecendo praticidade, criando experiências que unem prevenção, bem-estar e qualidade de vida para seus colaboradores.
             </p>
           </div>
 
