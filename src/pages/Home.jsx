@@ -25,6 +25,24 @@ function useScrollReveal(threshold = 0.15) {
   return ref;
 }
 
+// ─── Função utilitária para scroll suave ───────────────────────────────────
+export const handleSmoothScroll = (e, targetId) => {
+  e.preventDefault();
+  const target = document.getElementById(targetId);
+  if (target) {
+    const headerOffset = 80; // Altura do cabeçalho fixo
+    const elementPosition = target.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  } else {
+    window.location.hash = targetId;
+  }
+};
+
 // ─── Dados ───────────────────────────────────────────────────────────────
 const valores = [
   { icon: "star",          title: "Excelência",       desc: "Buscar sempre o melhor." },
@@ -114,6 +132,7 @@ function Hero() {
       <div ref={ctaRef} className="anim-fade-up flex flex-col sm:flex-row gap-4 items-center">
         <a
           href="#contatos"
+          onClick={(e) => handleSmoothScroll(e, 'contatos')}
           className="group inline-flex items-center gap-2 bg-primary text-on-primary font-body text-xs font-bold tracking-widest uppercase px-10 py-4 rounded-full shadow-[0px_4px_24px_rgba(115,92,0,0.25)] transition-all duration-300 hover:bg-[#554300] hover:-translate-y-1 hover:shadow-[0px_8px_32px_rgba(115,92,0,0.35)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           aria-label="Solicitar orçamento — ir para seção de contato"
         >
@@ -124,6 +143,7 @@ function Hero() {
         </a>
         <a
           href="#projeto-corporativo"
+          onClick={(e) => handleSmoothScroll(e, 'projeto-corporativo')}
           className="inline-flex items-center gap-2 border border-primary/50 text-primary font-body text-xs font-bold tracking-widest uppercase px-10 py-4 rounded-full transition-all duration-300 hover:bg-primary/8 hover:-translate-y-1 hover:border-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           aria-label="Conhecer o projeto corporativo"
         >
@@ -379,6 +399,7 @@ function IdealPara() {
         <div className="mt-16 flex justify-center">
           <a
             href="#contatos"
+            onClick={(e) => handleSmoothScroll(e, 'contatos')}
             className="group inline-flex items-center gap-3 bg-primary text-on-primary font-body text-xs font-bold tracking-widest uppercase px-10 py-4 rounded-full shadow-[0px_4px_24px_rgba(115,92,0,0.25)] transition-all duration-300 hover:bg-[#554300] hover:-translate-y-1 hover:shadow-[0px_8px_32px_rgba(115,92,0,0.35)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             aria-label="Solicitar orçamento — ir para seção de contato"
           >
