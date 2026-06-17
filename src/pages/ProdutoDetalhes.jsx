@@ -139,7 +139,7 @@ export default function ProdutoDetalhes() {
           <div>
             <div className="flex justify-between items-start mb-2">
               <div>
-                <h1 className="font-display text-3xl text-on-surface font-bold mb-1">{product.name}</h1>
+                <h1 className="font-playfair text-3xl text-on-surface font-bold mb-1">{product.name}</h1>
                 <p className="font-body text-xs text-on-surface-variant uppercase tracking-wider font-semibold">
                   Coleção Aurora
                 </p>
@@ -160,7 +160,7 @@ export default function ProdutoDetalhes() {
             </div>
 
             <div className="flex items-end gap-3 mt-4 mb-6">
-              <span className="font-display text-3xl text-primary font-bold">R$ {product.price}</span>
+              <span className="font-playfair text-3xl text-primary font-bold">R$ {product.price}</span>
               <span className="text-on-surface-variant text-sm line-through pb-1">R$ {product.oldPrice}</span>
             </div>
             
@@ -220,7 +220,7 @@ export default function ProdutoDetalhes() {
                   <span className="material-symbols-outlined">visibility</span>
                 </div>
                 <div>
-                  <h4 className="font-display text-sm font-bold text-on-surface mb-1">Adicionar Lentes de Grau?</h4>
+                  <h4 className="font-playfair text-sm font-bold text-on-surface mb-1">Adicionar Lentes de Grau?</h4>
                   <p className="text-xs text-on-surface-variant mb-3 leading-relaxed">
                     Envie sua receita após a compra. Trabalhamos com as melhores tecnologias de lentes antireflexo, luz azul e multifocais do mercado.
                   </p>
@@ -235,7 +235,7 @@ export default function ProdutoDetalhes() {
             <div className="border-t border-outline-variant/30">
               <button 
                 onClick={() => setShowTechnicalDetails(!showTechnicalDetails)}
-                className="w-full flex justify-between items-center font-display text-base font-bold text-on-surface py-4 border-b border-outline-variant/30"
+                className="w-full flex justify-between items-center font-playfair text-base font-bold text-on-surface py-4 border-b border-outline-variant/30"
               >
                 <span>Detalhes Técnicos</span>
                 <span className={`material-symbols-outlined transition-transform duration-300 ${

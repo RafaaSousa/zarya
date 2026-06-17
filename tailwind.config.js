@@ -72,7 +72,8 @@ export default {
         "stack-sm": "8px"
       },
       fontFamily: {
-        display: ["Playfair Display", "serif"],
+        display: ["Alex Brush", "cursive"],
+        playfair: ["Playfair Display", "serif"],
         body: ["Montserrat", "sans-serif"],
       }
     },

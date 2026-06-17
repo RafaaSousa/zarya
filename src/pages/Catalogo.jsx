@@ -417,7 +417,7 @@ export default function Catalogo() {
         
         {/* Page Header */}
         <header className="text-center md:text-left mb-6">
-          <h1 className="font-display text-3xl md:text-4xl text-primary font-semibold mb-2">
+          <h1 className="font-display text-5xl md:text-6xl text-primary font-normal mb-2">
             Catálogo &amp; Provador Virtual
           </h1>
           <p className="text-on-surface-variant max-w-2xl text-sm md:text-base">
@@ -431,7 +431,7 @@ export default function Catalogo() {
           <aside className="w-full md:w-64 flex-shrink-0">
             <div className="sticky top-24 bg-surface-container-lowest p-6 rounded-xl shadow-md border border-outline-variant/30">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="font-display text-lg font-bold text-on-surface">Filtros</h2>
+                <h2 className="font-playfair text-lg font-bold text-on-surface">Filtros</h2>
                 <button 
                   onClick={handleClearFilters}
                   className="text-primary font-body text-xs font-semibold hover:underline"
@@ -568,7 +568,7 @@ export default function Catalogo() {
                     <div className="flex-grow flex flex-col">
                       <div className="flex justify-between items-start mb-2">
                         <Link to={`/produto/${product.id}`}>
-                          <h3 className="font-display text-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                          <h3 className="font-playfair text-lg font-bold text-on-surface group-hover:text-primary transition-colors">
                             {product.name}
                           </h3>
                         </Link>
@@ -755,7 +755,7 @@ export default function Catalogo() {
                   <span className="text-xs font-bold uppercase tracking-widest text-primary mb-1 block">
                     Provando Agora
                   </span>
-                  <h2 className="font-display text-2xl md:text-3xl text-on-surface font-bold">
+                  <h2 className="font-playfair text-2xl md:text-3xl text-on-surface font-bold">
                     {activeTryOnProduct.name}
                   </h2>
                   <p className="font-body text-xl font-bold text-on-surface-variant mt-1">

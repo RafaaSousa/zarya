@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────
+   ROOT & SCROLL
+───────────────────────────────────────── */
 :root {
-  /* Define default custom variables if needed */
+  --anim-duration: 0.7s;
+  --anim-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -12,7 +22,9 @@ body {
   color: #1f1b13;
 }
 
-/* Custom mask shapes */
+/* ─────────────────────────────────────────
+   ARCH / SHAPE MASKS
+───────────────────────────────────────── */
 .arch-mask {
   border-radius: 200px 200px 0 0;
 }
@@ -40,11 +52,14 @@ body {
   border-radius: 9999px;
 }
 
-/* Animations */
+/* ─────────────────────────────────────────
+   LEGACY FADE-UP (compatibility)
+───────────────────────────────────────── */
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-up.visible {
@@ -52,22 +67,146 @@ body {
   transform: translateY(0);
 }
 
+/* ─────────────────────────────────────────
+   SCROLL-DRIVEN ANIMATIONS
+   Uses only opacity + transform (composited layers → zero layout shift)
+───────────────────────────────────────── */
+
+/* Fade-in up — default entry animation */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity var(--anim-duration) var(--anim-ease),
+    transform var(--anim-duration) var(--anim-ease);
+  will-change: opacity, transform;
+}
+
+.anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade-in from left */
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity var(--anim-duration) var(--anim-ease),
+    transform var(--anim-duration) var(--anim-ease);
+  will-change: opacity, transform;
+}
+
+.anim-slide-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade-in from right */
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition:
+    opacity var(--anim-duration) var(--anim-ease),
+    transform var(--anim-duration) var(--anim-ease);
+  will-change: opacity, transform;
+}
+
+.anim-slide-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale-in (for cards, badges) */
+.anim-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 0.6s var(--anim-ease),
+    transform 0.6s var(--anim-ease);
+  will-change: opacity, transform;
+}
+
+.anim-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered delays for children */
+.anim-delay-100 { transition-delay: 100ms !important; }
+.anim-delay-150 { transition-delay: 150ms !important; }
+.anim-delay-200 { transition-delay: 200ms !important; }
+.anim-delay-250 { transition-delay: 250ms !important; }
+.anim-delay-300 { transition-delay: 300ms !important; }
+.anim-delay-350 { transition-delay: 350ms !important; }
+.anim-delay-400 { transition-delay: 400ms !important; }
+.anim-delay-500 { transition-delay: 500ms !important; }
+.anim-delay-600 { transition-delay: 600ms !important; }
+
+/* Legacy delays */
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 
+/* ─────────────────────────────────────────
+   CSS KEYFRAME ANIMATIONS
+───────────────────────────────────────── */
 .float-animation {
   animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-15px); }
   100% { transform: translateY(0px); }
 }
 
-/* Glassmorphism */
+/* Shimmer highlight for accent lines */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #C9A227 0%,
+    #f0d070 40%,
+    #C9A227 60%,
+    #a07800 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Pulse ring for CTA attention */
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid #C9A227;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Section separator wave */
+@keyframes wave-move {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────
+   GLASSMORPHISM
+───────────────────────────────────────── */
 .glass-card {
   background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(12px);
@@ -83,6 +222,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* ─────────────────────────────────────────
+   SCROLLBAR HIDE
+───────────────────────────────────────── */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -92,6 +234,9 @@ body {
   scrollbar-width: none;
 }
 
+/* ─────────────────────────────────────────
+   HEADER WHATSAPP BUTTON
+───────────────────────────────────────── */
 .header-whatsapp-button[aria-disabled="true"] {
   background-color: #eae1d4;
   color: #1f1b13;
@@ -110,4 +255,60 @@ body {
 
 .header-whatsapp-button[aria-disabled="true"] svg {
   opacity: 0.65;
+}
+
+/* ─────────────────────────────────────────
+   NAV PROGRESS INDICATOR
+───────────────────────────────────────── */
+.nav-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A227, #f0d070);
+  transition: width 0.4s var(--anim-ease);
+  border-radius: 0 2px 2px 0;
+}
+
+/* ─────────────────────────────────────────
+   SECTION SCROLL SNAP (optional utility)
+───────────────────────────────────────── */
+.scroll-section {
+  scroll-margin-top: 80px; /* altura do header */
+}
+
+/* ─────────────────────────────────────────
+   ACCESSIBLE FOCUS RING
+───────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #C9A227;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────
+   REDUCED MOTION — respeita preferências do usuário
+───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .anim-fade-up,
+  .anim-slide-left,
+  .anim-slide-right,
+  .anim-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .float-animation {
+    animation: none;
+  }
 }
