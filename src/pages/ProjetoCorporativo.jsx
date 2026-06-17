@@ -129,7 +129,7 @@ export default function ProjetoCorporativo() {
             <h2
               className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]"
             >
-              Ações In-Company &amp; <span className="font-sans font-light">SIPAT</span>
+              Ações In-Company &amp; <span className="font-sans font-extralight">SIPAT</span>
             </h2>
             <p className="font-body text-sm md:text-base text-on-surface-variant">
               Levamos o cuidado visual diretamente para sua empresa. Nossa ótica móvel
