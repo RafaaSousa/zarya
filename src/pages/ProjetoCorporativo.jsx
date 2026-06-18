@@ -72,10 +72,10 @@ export default function ProjetoCorporativo() {
           {/* Left: Text */}
           <div className="flex-1 flex flex-col gap-6">
             <h2
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-normal leading-none"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-normal leading-none"
               style={{ color: "#C9A227" }}
             >
-              Percepção,<br />bem-estar e<br />ambiente<br />corporativo
+              Percepção, bem-estar e<br />ambiente corporativo
             </h2>
 
             <div className="flex flex-col gap-3 text-sm md:text-base text-on-surface-variant leading-relaxed max-w-md">
