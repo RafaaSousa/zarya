@@ -94,12 +94,12 @@ function Hero() {
         style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,39,0.4))" }}
       />
 
-      {/* Logo */}
-      <div ref={logoRef} className="anim-fade-up mb-12 md:mb-16">
+      {/* Logo (vertical: olho centralizado sobre o nome, alinhado ao centro) */}
+      <div ref={logoRef} className="anim-fade-up mb-12 md:mb-16 flex justify-center w-full">
         <img
-          src="/logo/logo horizontal_color.svg"
+          src="/logo/logo vertical_color.svg"
           alt="Zaryá Ótica"
-          className="h-28 md:h-40 lg:h-48 w-auto object-contain drop-shadow-md"
+          className="h-52 md:h-72 lg:h-80 w-auto object-contain drop-shadow-md"
           loading="eager"
           onError={(e) => {
             e.target.src =
@@ -133,11 +133,11 @@ function Hero() {
         <a
           href="#contatos"
           onClick={(e) => handleSmoothScroll(e, 'contatos')}
-          className="group inline-flex items-center gap-2 bg-primary text-on-primary font-body text-xs font-bold tracking-widest uppercase px-10 py-4 rounded-full shadow-[0px_4px_24px_rgba(115,92,0,0.25)] transition-all duration-300 hover:bg-[#554300] hover:-translate-y-1 hover:shadow-[0px_8px_32px_rgba(115,92,0,0.35)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          className="group relative inline-flex items-center justify-center bg-primary text-on-primary font-body text-xs font-bold tracking-widest uppercase px-12 py-4 rounded-full shadow-[0px_4px_24px_rgba(115,92,0,0.25)] transition-all duration-300 hover:bg-[#554300] hover:-translate-y-1 hover:shadow-[0px_8px_32px_rgba(115,92,0,0.35)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           aria-label="Solicitar orçamento — ir para seção de contato"
         >
           <span>Solicitar Orçamento</span>
-          <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+          <span className="material-symbols-outlined text-[18px] absolute right-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
             arrow_forward
           </span>
         </a>
@@ -262,20 +262,20 @@ function Valores() {
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              {/* Ícone */}
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center transition-colors duration-300 group-hover:bg-[#C9A227]/15"
-                   style={{ background: "rgba(201,162,39,0.08)" }}>
-                <span className="material-symbols-outlined text-[22px] transition-colors duration-300"
-                      style={{ color: "#C9A227" }} aria-hidden="true">
-                  {v.icon}
-                </span>
+              {/* Ícone + Título (lado a lado) */}
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#C9A227]/15"
+                     style={{ background: "rgba(201,162,39,0.08)" }}>
+                  <span className="material-symbols-outlined text-[22px] transition-colors duration-300"
+                        style={{ color: "#C9A227" }} aria-hidden="true">
+                    {v.icon}
+                  </span>
+                </div>
+                <h3 className="font-playfair text-lg font-bold text-on-surface">{v.title}</h3>
               </div>
 
-              {/* Conteúdo */}
-              <div>
-                <h3 className="font-playfair text-lg font-bold text-on-surface mb-1">{v.title}</h3>
-                <p className="font-body text-sm text-on-surface-variant leading-relaxed">{v.desc}</p>
-              </div>
+              {/* Descrição (embaixo) */}
+              <p className="font-body text-sm text-on-surface-variant leading-relaxed">{v.desc}</p>
 
               {/* Linha de hover */}
               <div
