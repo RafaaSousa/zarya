@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import CartDrawer from "./CartDrawer";
 
 const WHATSAPP_URL = "https://wa.me/5500000000000";
 
@@ -31,9 +34,14 @@ function WhatsAppIcon({ className = "" }) {
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { count } = useCart();
+  const isCatalogo = location.pathname === "/catalogo";
 
   // Track scroll elevation for shadow effect
   useEffect(() => {
@@ -81,21 +89,38 @@ export default function Header() {
 
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
 
-  const handleNavClick = useCallback((sectionId) => {
-    setIsDrawerOpen(false);
-    // Give drawer time to close before scrolling
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        const headerHeight = 80;
-        const top = el.getBoundingClientRect().top + window.scrollY - headerHeight;
-        window.scrollTo({ top, behavior: "smooth" });
+  const handleNavClick = useCallback(
+    (sectionId) => {
+      setIsDrawerOpen(false);
+      const doScroll = () => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const headerHeight = 80;
+          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      };
+      // Se estiver fora da landing, volta para "/" antes de rolar até a seção
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(doScroll, 350);
+      } else {
+        setTimeout(doScroll, 150);
       }
-    }, 150);
-  }, []);
+    },
+    [location.pathname, navigate]
+  );
+
+  const handleCatalogClick = useCallback(() => {
+    setIsDrawerOpen(false);
+    setTimeout(() => navigate("/catalogo"), 150);
+  }, [navigate]);
 
   return (
     <>
+      {/* ── Cart Drawer ── */}
+      <CartDrawer open={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
       {/* ── Mobile Drawer Overlay ── */}
       <div
         className={`fixed inset-0 z-[100] transition-all duration-300 ${
@@ -172,6 +197,27 @@ export default function Header() {
                 </button>
               );
             })}
+
+            {/* Aba Catálogo (rota) */}
+            <button
+              onClick={handleCatalogClick}
+              aria-current={isCatalogo ? "page" : undefined}
+              className={`text-left font-body text-sm font-semibold tracking-wider py-3 px-4 rounded-xl transition-all duration-200 ${
+                isCatalogo
+                  ? "text-primary bg-primary/8"
+                  : "text-on-surface hover:text-primary hover:bg-primary/5"
+              }`}
+            >
+              <span className="flex items-center gap-3">
+                {isCatalogo && (
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                )}
+                CATÁLOGO
+              </span>
+            </button>
           </nav>
 
           {/* Drawer Footer CTA */}
@@ -256,10 +302,45 @@ export default function Header() {
                 </button>
               );
             })}
+
+            {/* Aba Catálogo (rota) */}
+            <button
+              onClick={handleCatalogClick}
+              aria-current={isCatalogo ? "page" : undefined}
+              className={`relative font-body text-xs font-semibold tracking-wider transition-all duration-200 px-4 py-2 rounded-full ${
+                isCatalogo
+                  ? "text-primary"
+                  : "text-on-surface-variant hover:text-primary hover:bg-primary/5"
+              }`}
+            >
+              CATÁLOGO
+              <span
+                className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-primary transition-all duration-300 ${
+                  isCatalogo ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                }`}
+                style={{ transformOrigin: "left" }}
+                aria-hidden="true"
+              />
+            </button>
           </nav>
 
-          {/* WhatsApp Button */}
-          <div className="flex items-center gap-4">
+          {/* WhatsApp + Carrinho */}
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Carrinho */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              aria-label="Abrir carrinho"
+              title="Carrinho"
+              className="relative flex h-11 w-11 items-center justify-center rounded-full text-primary hover:bg-primary/10 transition-colors focus-visible:ring-2 focus-visible:ring-primary md:h-12 md:w-12"
+            >
+              <span className="material-symbols-outlined text-[26px]">shopping_bag</span>
+              {count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-error text-white text-[10px] font-bold">
+                  {count}
+                </span>
+              )}
+            </button>
+
             <a
               href={WHATSAPP_URL}
               target="_blank"

@@ -1,71 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-
-const PRODUCTS = [
-  {
-    id: "aura-classic",
-    name: "Aura Classic",
-    price: 450,
-    oldPrice: 550,
-    description: "Armação redonda em tartaruga com hastes finas.",
-    detailedDescription: "A armação Aura Classic combina a elegância atemporal do design redondo com a durabilidade do acetato premium. Ideal para rostos ovais e quadrados, proporcionando um visual intelectual e sofisticado.",
-    material: "Acetato Mazzucchelli",
-    shape: "Redondo",
-    gender: "Feminino",
-    images: [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDM4Tsm4MeDgfaQMPpOIEZnSfutGVSXocom1cnycBQTxx4whlOkxiHXKVd4VN8Sewibz0fWmozu-lcMy01N3tfSgyugrNmaPq8Rat65aB60l4bE_itR58kcfJa2bWYg0AOhRKCJUV-Dsh5yhXU9K9XWHOUECC8nZW7bP_WsI-8DHFJBK1c1PLlsztG9z8-cxPTrmVpr4bMwVG4G_LK6Mt_BCNpcYneQ9e2BYO7grSixj8_VKUCTPaSR8Ei4KGCkHoP23AEc4PJBvOo",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAoBMH_zRIRvk7qifmj0Sw7Ce6Mi47AAAXHQBstTuE1Hb9mDDBDlJMnUzRm_OVo9MY9WzmWrGOsisSlu45u1TMjBmI_tXYF-YD30dcKhMc2V7eTULrf4Nfv7mS63V61IXjcPq95wRDqrOyQPBMwZtJhoaHRx4MsLSX4Qs5ldNOwkgcyJxzhkuul8ScDQD2heB_XrFbemnwSvNUVFgBAouVy9DjgqWSESgARhfAvW-yPQFNLQWSRVZRrg3coHfliAbuG7Fu5pUJ9lGI",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCQUywwlfvnUd23fr3qo5yfAFFublJktNoCONAoW_YSXG5FJiP6cNADlVGe9yCUnPX4xNVI_sYyq-T7l3w2esScEemoE7R_rf-65ajrJHq-NE5aVCqEtg1qDBfhmNO6LmiRbUi0W8MT7UxSZDSZMjP90UQ-tDQfG0Are5Y6b0mePRK0boooOrpePLcwVzw5qz83okIChoiEcnBVLQIyf2ru2u3rECwFNLXDZJAKB5AJ-KDHYLpBGdT-UW9K0QTF0dpFaJLrEXycKvE"
-    ],
-    colors: ["Tartaruga", "Preto", "Cristal"],
-    colorHexes: ["#5C4033", "#000000", "#E5E4E2"],
-    measurements: { aro: "50mm", ponte: "20mm", haste: "145mm" },
-    isNew: false
-  },
-  {
-    id: "lumina-cat",
-    name: "Lumina Cat",
-    price: 520,
-    oldPrice: 620,
-    description: "Design gatinho marcante para um olhar sofisticado.",
-    detailedDescription: "A Lumina Cat traz traços expressivos e marcantes em um design cat-eye clássico com detalhes metálicos refinados nas dobradiças. Feita para rostos ovais ou arredondados que buscam destaque com suavidade.",
-    material: "Acetato Premium",
-    shape: "Gatinho",
-    gender: "Feminino",
-    images: [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB3LRBBxYBUjJRixSDbf7UmW-GGrSVqaF4vThw0TgK7l6slZfWhFcXXgA1MMtizzGi3t_QHcNVNHZ0u2LvhRjXDDRXgICqdONFTNefNxMegrde_FodCQvKC6lymP4bFowQ6sAJU4YlB5YQKt9JGk_YGdBWRqRFPsT_vlX6DGQ0-hXQLPvfO-bU3r_0rUNsjB0mOAQu9v_av3FmOYhD-gMp3lv6qb8co-fyC2mp3-NNEXkhofP6iwlDuZNQvDBIhDnJRFNoh9uHNDwY",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCQUywwlfvnUd23fr3qo5yfAFFublJktNoCONAoW_YSXG5FJiP6cNADlVGe9yCUnPX4xNVI_sYyq-T7l3w2esScEemoE7R_rf-65ajrJHq-NE5aVCqEtg1qDBfhmNO6LmiRbUi0W8MT7UxSZDSZMjP90UQ-tDQfG0Are5Y6b0mePRK0boooOrpePLcwVzw5qz83okIChoiEcnBVLQIyf2ru2u3rECwFNLXDZJAKB5AJ-KDHYLpBGdT-UW9K0QTF0dpFaJLrEXycKvE"
-    ],
-    colors: ["Preto Onyx", "Vinho"],
-    colorHexes: ["#000000", "#8B0000"],
-    measurements: { aro: "52mm", ponte: "18mm", haste: "140mm" },
-    isNew: false
-  },
-  {
-    id: "vitre-minimal",
-    name: "Vitre Minimal",
-    price: 480,
-    oldPrice: 580,
-    description: "Estrutura transparente e leve para o dia a dia.",
-    detailedDescription: "Vitre Minimal é o equilíbrio perfeito entre design industrial e leveza. Sua estrutura transparente de acetato cristalizado oferece um ajuste confortável e um visual contemporâneo discreto.",
-    material: "Titânio & Acetato",
-    shape: "Quadrado",
-    gender: "Unissex",
-    images: [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCXK5l35zZvOplUI17knjVn_8XgpET58U6IYHYzanOCl07KOjQYc37DupdfWq5yHk1g2u5Ma1WfwgSG8_WedyGyDg_BV6JMmx6sXJzzY44jAFtIBmF_aNtxrfq_oFC_nshKv4QUigHM9mYeDyqAnUj29wIrFTXWnZA-kalfVcqTfOTcYuGn1aGhLInxki5PIQW0D2Y9uly5FKttxnajup3toaosYe0Gxd_AOejuHL6n1w43uX8xTY5o2Mi-Y3dPvco2UNGFbizZ-hY",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAoBMH_zRIRvk7qifmj0Sw7Ce6Mi47AAAXHQBstTuE1Hb9mDDBDlJMnUzRm_OVo9MY9WzmWrGOsisSlu45u1TMjBmI_tXYF-YD30dcKhMc2V7eTULrf4Nfv7mS63V61IXjcPq95wRDqrOyQPBMwZtJhoaHRx4MsLSX4Qs5ldNOwkgcyJxzhkuul8ScDQD2heB_XrFbemnwSvNUVFgBAouVy9DjgqWSESgARhfAvW-yPQFNLQWSRVZRrg3coHfliAbuG7Fu5pUJ9lGI"
-    ],
-    colors: ["Transparente", "Cinza Matte"],
-    colorHexes: ["#E5E4E2", "#A9A9A9"],
-    measurements: { aro: "51mm", ponte: "19mm", haste: "145mm" },
-    isNew: true
-  }
-];
+import { fetchProductBySlug } from "../lib/products";
+import { useCart } from "../context/CartContext";
 
 export default function ProdutoDetalhes() {
   const { id } = useParams();
-  const product = PRODUCTS.find((p) => p.id === id) || PRODUCTS[0];
+  const { addItem } = useCart();
 
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -73,16 +16,61 @@ export default function ProdutoDetalhes() {
   const [showTechnicalDetails, setShowTechnicalDetails] = useState(true);
   const [cartSuccess, setCartSuccess] = useState(false);
 
-  // Reset indices on product change
+  // Carrega o produto pelo slug da URL
   useEffect(() => {
-    setActiveImageIndex(0);
-    setSelectedColor(0);
-  }, [product]);
+    let active = true;
+    setLoading(true);
+    fetchProductBySlug(id)
+      .then((data) => {
+        if (active) {
+          setProduct(data);
+          setActiveImageIndex(0);
+          setSelectedColor(0);
+        }
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [id]);
 
   const handleAddToCart = () => {
+    if (!product) return;
+    addItem({
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      image: product.images?.[0] || product.image || "",
+      color: product.colors?.[selectedColor] ?? null,
+      stock: product.stock
+    });
     setCartSuccess(true);
     setTimeout(() => setCartSuccess(false), 3000);
   };
+
+  if (loading) {
+    return (
+      <div className="bg-background min-h-screen flex flex-col items-center justify-center font-body py-20">
+        <span className="material-symbols-outlined text-5xl text-on-surface-variant/40 mb-3 animate-pulse">visibility</span>
+        <p className="text-on-surface-variant">Carregando produto...</p>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="bg-background min-h-screen flex flex-col items-center justify-center font-body py-20 gap-4 text-center px-6">
+        <span className="material-symbols-outlined text-5xl text-on-surface-variant/40">search_off</span>
+        <p className="text-on-surface-variant">Produto não encontrado.</p>
+        <Link to="/catalogo" className="text-primary font-semibold underline">
+          Voltar ao catálogo
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-background min-h-screen flex flex-col font-body">
@@ -161,7 +149,9 @@ export default function ProdutoDetalhes() {
 
             <div className="flex items-end gap-3 mt-4 mb-6">
               <span className="font-playfair text-3xl text-primary font-bold">R$ {product.price}</span>
-              <span className="text-on-surface-variant text-sm line-through pb-1">R$ {product.oldPrice}</span>
+              {product.oldPrice ? (
+                <span className="text-on-surface-variant text-sm line-through pb-1">R$ {product.oldPrice}</span>
+              ) : null}
             </div>
             
             <p className="font-body text-sm text-on-surface-variant leading-relaxed mb-6">

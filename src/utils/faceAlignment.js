@@ -275,17 +275,22 @@ export function computeGlassesAlignment({
   const standardizedWidthFactor = clamp(frameWidthMm / 135, 0.84, 1.18);
   const shapeFactor = SHAPE_FACTORS[product?.shape] ?? SHAPE_FACTORS.default;
 
-  const dynamicWidth = Math.max(
-    interpupillaryDistance * 2.18,
-    faceWidth * 0.72,
-    jawWidth * 0.68
-  ) * standardizedWidthFactor * shapeFactor.width;
+  // Ajustes finos opcionais por produto (cadastrados no admin em overlay_meta).
+  const meta = product?.overlayMeta || {};
+  const metaWidthScale = Number.isFinite(meta.widthScale) ? meta.widthScale : 1;
+  const metaYOffset = Number.isFinite(meta.yOffset) ? meta.yOffset : 0;
 
-  const width = clamp(dynamicWidth, frameWidth * 0.28, frameWidth * 0.88);
+  const dynamicWidth =
+    Math.max(interpupillaryDistance * 2.18, faceWidth * 0.72, jawWidth * 0.68) *
+    standardizedWidthFactor *
+    shapeFactor.width *
+    metaWidthScale;
+
+  const width = clamp(dynamicWidth, containerWidth * 0.28, containerWidth * 0.88);
   const height = clamp(
     width * shapeFactor.height + chinDistance * 0.04,
-    frameHeight * 0.12,
-    frameHeight * 0.42
+    containerHeight * 0.12,
+    containerHeight * 0.42
   );
 
   const centerX = eyeCenter.x + (noseBridge.x - eyeCenter.x) * 0.22;
@@ -293,9 +298,9 @@ export function computeGlassesAlignment({
     eyeCenter.y +
     noseDrop * 0.28 +
     (earLineY - eyeCenter.y) * 0.1 +
-    height * shapeFactor.yOffset;
+    height * (shapeFactor.yOffset + metaYOffset);
 
-  const faceCoverage = clamp(faceWidth / frameWidth, 0, 1);
+  const faceCoverage = clamp(faceWidth / containerWidth, 0, 1);
   const facialSymmetry = 1 - clamp(Math.abs(leftEye.y - rightEye.y) / Math.max(interpupillaryDistance, 1), 0, 1);
   const jawCoverage = clamp(jawWidth / Math.max(faceWidth, 1), 0.55, 1.2);
   const confidence = clamp(

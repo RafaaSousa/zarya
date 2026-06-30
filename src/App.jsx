@@ -6,6 +6,10 @@ import LandingPage from "./pages/LandingPage";
 import Catalogo from "./pages/Catalogo";
 import ProdutoDetalhes from "./pages/ProdutoDetalhes";
 import Manutencao from "./pages/Manutencao";
+import Checkout from "./pages/Checkout";
+import PedidoStatus from "./pages/PedidoStatus";
+import AdminApp from "./pages/admin/AdminApp";
+import { CartProvider } from "./context/CartContext";
 
 // Reseta scroll ao trocar de rota (para páginas fora da landing)
 function ScrollToTop() {
@@ -18,29 +22,36 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow" id="main-content" tabIndex={-1}>
-          <Routes>
-            {/* Landing page única com scroll-driven navigation */}
-            <Route path="/" element={<LandingPage />} />
+    <CartProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow" id="main-content" tabIndex={-1}>
+            <Routes>
+              {/* Landing page única com scroll-driven navigation */}
+              <Route path="/" element={<LandingPage />} />
 
-            {/* Rotas auxiliares mantidas */}
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/produto/:id" element={<ProdutoDetalhes />} />
-            <Route path="/manutencao" element={<Manutencao />} />
+              {/* Rotas auxiliares mantidas */}
+              <Route path="/catalogo" element={<Catalogo />} />
+              <Route path="/produto/:id" element={<ProdutoDetalhes />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/pedido/:status" element={<PedidoStatus />} />
+              <Route path="/manutencao" element={<Manutencao />} />
 
-            {/* Redirect legacy routes para a landing com âncora */}
-            <Route path="/ProjetoCorporativo" element={<LandingPageRedirect section="projeto-corporativo" />} />
-            <Route path="/contato" element={<LandingPageRedirect section="contatos" />} />
-            <Route path="/quemsomos" element={<LandingPageRedirect section="home" />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+              {/* Área administrativa */}
+              <Route path="/admin/*" element={<AdminApp />} />
+
+              {/* Redirect legacy routes para a landing com âncora */}
+              <Route path="/ProjetoCorporativo" element={<LandingPageRedirect section="projeto-corporativo" />} />
+              <Route path="/contato" element={<LandingPageRedirect section="contatos" />} />
+              <Route path="/quemsomos" element={<LandingPageRedirect section="home" />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 
