@@ -67,7 +67,7 @@ export default function ProjetoCorporativo() {
       <section className="w-full bg-[#F7F4EF]">
         <div
           ref={heroRef}
-          className="max-w-[1280px] mx-auto px-4 md:px-10 py-16 md:py-20 flex flex-col md:flex-row items-center gap-10 md:gap-14 anim-fade-up"
+          className="max-w-[1280px] mx-auto px-4 md:px-10 py-10 md:py-14 lg:py-16 flex flex-col md:flex-row items-center gap-10 md:gap-14 anim-fade-up"
         >
           {/* Left: Text */}
           <div className="flex-1 flex flex-col gap-6">
@@ -80,7 +80,7 @@ export default function ProjetoCorporativo() {
 
             <div className="flex flex-col gap-3 text-sm md:text-base text-on-surface-variant leading-relaxed max-w-md">
               <p>
-                Rotinas intensas, excesso de telas e vida da manda visual fazem parte da realidade corporativa atual.
+                Rotinas intensas, excesso de telas e demanda visual fazem parte da realidade corporativa atual.
               </p>
               <p>
                 A fadiga visual impacta atenção, produtividade, foco e bem-estar dos colaboradores.
@@ -109,7 +109,7 @@ export default function ProjetoCorporativo() {
           </div>
 
           {/* Right: Office Photo */}
-          <div className="flex-grow w-full max-w-lg md:max-w-none anim-slide-right anim-delay-200">
+          <div className="w-full max-w-md lg:max-w-lg flex-shrink-0 anim-slide-right anim-delay-200">
             <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="/zarya-oculos.jpg"
