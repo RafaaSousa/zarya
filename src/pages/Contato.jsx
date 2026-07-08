@@ -90,32 +90,34 @@ export default function Contato() {
           </h3>
 
           <a
-            href="https://wa.me/5511999999999"
+            href="https://wa.me/5511931502102"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-4 p-4 bg-surface rounded-xl shadow-md border border-outline-variant/30 hover:border-primary transition-all group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            aria-label="Entrar em contato pelo WhatsApp: +55 11 99999-9999"
+            aria-label="Entrar em contato pelo WhatsApp: +55 11 93150-2102"
           >
             <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container group-hover:bg-primary group-hover:text-on-primary transition-colors">
               <span className="material-symbols-outlined">forum</span>
             </div>
             <div>
               <span className="block font-body text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">WhatsApp</span>
-              <span className="block font-body text-sm font-semibold text-on-surface">+55 (11) 99999-9999</span>
+              <span className="block font-body text-sm font-semibold text-on-surface">+55 (11) 93150-2102</span>
             </div>
           </a>
 
           <a
-            href="tel:+551133333333"
+            href="https://wa.me/5511986756809"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-4 p-4 bg-surface rounded-xl shadow-md border border-outline-variant/30 hover:border-primary transition-all group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            aria-label="Ligar para telefone fixo: +55 11 3333-3333"
+            aria-label="Entrar em contato pelo WhatsApp: +55 11 98675-6809"
           >
-            <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-              <span className="material-symbols-outlined">call</span>
+            <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span className="material-symbols-outlined">forum</span>
             </div>
             <div>
-              <span className="block font-body text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Telefone Fixo</span>
-              <span className="block font-body text-sm font-semibold text-on-surface">+55 (11) 3333-3333</span>
+              <span className="block font-body text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">WhatsApp</span>
+              <span className="block font-body text-sm font-semibold text-on-surface">+55 (11) 98675-6809</span>
             </div>
           </a>
 
@@ -128,7 +130,8 @@ export default function Contato() {
             </ul>
           </div>
 
-          <div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
+          {/* Endereço - google maps */}
+          {/*<div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
             <h4 className="font-body text-xs font-bold text-primary uppercase tracking-wider mb-2">Endereço</h4>
             <p className="font-body text-xs text-on-surface-variant leading-relaxed">
               Av. Paulista, 1000 - Bela Vista<br />São Paulo - SP, 01310-100
@@ -141,7 +144,7 @@ export default function Contato() {
             >
               Ver no mapa
             </a>
-          </div>
+          </div>*/}
         </section>
 
         {/* Contact Form */}

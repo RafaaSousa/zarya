@@ -1,6 +1,6 @@
 import React from "react";
 
-const WHATSAPP_URL = "https://wa.me/5500000000000";
+const WHATSAPP_URL = "https://wa.me/5511931502102";
 
 function scrollTo(sectionId) {
   const el = document.getElementById(sectionId);
@@ -89,10 +89,17 @@ export default function Footer() {
           </a>
           <a
             className="flex items-center gap-2 font-body text-sm text-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded w-fit"
-            href="tel:+550000000000"
+            href="tel:+5511931502102"
           >
             <span className="material-symbols-outlined text-[20px]" aria-hidden="true">call</span>
-            (00) 00000-0000
+            (11) 93150-2102
+          </a>
+          <a
+            className="flex items-center gap-2 font-body text-sm text-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded w-fit"
+            href="tel:+5511931502102"
+          >
+            <span className="material-symbols-outlined text-[20px]" aria-hidden="true">call</span>
+            (11) 98675-6809
           </a>
           <a
             href={WHATSAPP_URL}

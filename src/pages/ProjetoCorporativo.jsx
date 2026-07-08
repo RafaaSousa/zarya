@@ -224,15 +224,11 @@ export default function ProjetoCorporativo() {
               <div className="flex flex-wrap gap-4 text-xs text-on-surface-variant font-body">
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-outlined text-base" style={{ color: "#C9A227" }}>call</span>
-                  (11) 9999-9999
+                  (11) 93150-2102
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-outlined text-base" style={{ color: "#C9A227" }}>call</span>
-                  (11) 8888-2222
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-base" style={{ color: "#C9A227" }}>call</span>
-                  (11) 7777-0001
+                  (11) 98675-6809
                 </span>
               </div>
             </div>

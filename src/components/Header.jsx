@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const WHATSAPP_URL = "https://wa.me/5500000000000";
+const WHATSAPP_URL = "https://wa.me/5511931502102";
 
 const NAV_SECTIONS = [
   { id: "home", label: "INÍCIO" },
