@@ -254,13 +254,14 @@ function Valores() {
               className={`group relative flex flex-col gap-4 p-8 rounded-2xl border border-outline-variant/40 bg-white hover:border-[#C9A227]/50 hover:shadow-[0_8px_32px_rgba(201,162,39,0.10)] transition-all duration-500 hover:-translate-y-1 cursor-default anim-scale anim-delay-${(i % 3 + 1) * 100}`}
             >
               {/* Número decorativo */}
-              <span
+
+              {/*<span
                 className="absolute top-6 right-7 font-display text-6xl md:text-7xl font-normal select-none transition-opacity duration-500 group-hover:opacity-0"
                 style={{ color: "rgba(201,162,39,0.08)", lineHeight: 1 }}
                 aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
-              </span>
+              </span>*/}
 
               {/* Ícone + Título (lado a lado) */}
               <div className="flex items-center gap-3">

@@ -177,7 +177,7 @@ export default function Header() {
           {/* Drawer Footer CTA */}
           <div className="mt-auto p-6 border-t border-outline-variant/30">
             <p className="font-body text-sm text-on-surface-variant mb-4">
-              Soluções óticas corporativas com elegância e cuidado.
+              Soluções ópticas corporativas com elegância e cuidado.
             </p>
             <a
               href={WHATSAPP_URL}

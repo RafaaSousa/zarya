@@ -82,10 +82,10 @@ export default function Footer() {
           <span className="font-body text-xs font-bold text-on-surface uppercase tracking-wider mb-2">Contato</span>
           <a
             className="flex items-center gap-2 font-body text-sm text-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded w-fit"
-            href="mailto:contato@zaryaotica.com.br"
+            href="mailto:atendimento@zaryaotica.com.br"
           >
             <span className="material-symbols-outlined text-[20px]" aria-hidden="true">mail</span>
-            contato@zaryaotica.com.br
+            atendimento@zaryaotica.com.br
           </a>
           <a
             className="flex items-center gap-2 font-body text-sm text-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded w-fit"

@@ -11,13 +11,13 @@ function useScrollReveal(options = {}) {
         if (entry.isIntersecting) {
           el.classList.add("is-visible");
           // also trigger children with anim classes
-          el.querySelectorAll(".anim-fade-up, .anim-slide-left, .anim-slide-right, .anim-scale").forEach(
-            (child) => child.classList.add("is-visible")
-          );
+          el.querySelectorAll(
+            ".anim-fade-up, .anim-slide-left, .anim-slide-right, .anim-scale",
+          ).forEach((child) => child.classList.add("is-visible"));
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1, ...options }
+      { threshold: 0.1, ...options },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -33,7 +33,7 @@ const services = [
       "Triagem visual e relatório realizado por especialistas no próprio local de trabalho. Identificamos e corrigimos necessidades visuais.",
   },
   {
-    icon: "remove_red_eye",
+    icon: "local_shipping",
     title: "Ótica Móvel",
     description:
       "Apresentação de um catálogo repleto de armações modernas. Colaboradores podem escolher e encomendar seus óculos sem sair da empresa.",
@@ -56,13 +56,12 @@ const benefits = [
 ];
 
 export default function ProjetoCorporativo() {
-  const heroRef     = useScrollReveal();
+  const heroRef = useScrollReveal();
   const servicesRef = useScrollReveal();
   const benefitsRef = useScrollReveal();
 
   return (
     <div className="bg-background text-on-surface font-body overflow-x-hidden">
-
       {/* ── 1. HERO ── */}
       <section className="w-full bg-[#F7F4EF]">
         <div
@@ -75,18 +74,22 @@ export default function ProjetoCorporativo() {
               className="font-display text-4xl md:text-5xl lg:text-6xl font-normal leading-none"
               style={{ color: "#C9A227" }}
             >
-              Percepção, bem-estar e<br />ambiente corporativo
+              Percepção, bem-estar e<br />
+              ambiente corporativo
             </h2>
 
             <div className="flex flex-col gap-3 text-sm md:text-base text-on-surface-variant leading-relaxed max-w-md">
               <p>
-                Rotinas intensas, excesso de telas e demanda visual fazem parte da realidade corporativa atual.
+                Rotinas intensas, excesso de telas e demanda visual fazem parte
+                da realidade corporativa atual.
               </p>
               <p>
-                A fadiga visual impacta atenção, produtividade, foco e bem-estar dos colaboradores.
+                A fadiga visual impacta atenção, produtividade, foco e bem-estar
+                dos colaboradores.
               </p>
               <p>
-                Por isso, empresas têm buscado ações mais modernas, humanistas e preventivas dentro do ambiente corporativo.
+                Por isso, empresas têm buscado ações mais modernas, humanistas e
+                preventivas dentro do ambiente corporativo.
               </p>
             </div>
 
@@ -100,9 +103,13 @@ export default function ProjetoCorporativo() {
               </span>
               <p className="font-body text-xs text-on-surface-variant leading-relaxed">
                 A atualização da NR 1 reforça a importância de ações voltadas ao{" "}
-                <span className="font-semibold" style={{ color: "#C9A227" }}>bem-estar</span>{" "}
+                <span className="font-semibold" style={{ color: "#C9A227" }}>
+                  bem-estar
+                </span>{" "}
                 e às formas de{" "}
-                <span className="font-semibold" style={{ color: "#C9A227" }}>relações profissionais</span>{" "}
+                <span className="font-semibold" style={{ color: "#C9A227" }}>
+                  relações profissionais
+                </span>{" "}
                 no ambiente corporativo.
               </p>
             </div>
@@ -124,15 +131,19 @@ export default function ProjetoCorporativo() {
 
       {/* ── 2. AÇÕES IN-COMPANY & SIPAT ── */}
       <section className="w-full bg-white py-16 md:py-20">
-        <div ref={servicesRef} className="max-w-[1280px] mx-auto px-4 md:px-10 flex flex-col items-center gap-10">
+        <div
+          ref={servicesRef}
+          className="max-w-[1280px] mx-auto px-4 md:px-10 flex flex-col items-center gap-10"
+        >
           <div className="text-center flex flex-col gap-3 max-w-2xl anim-fade-up">
-            <h2
-              className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]"
-            >
-             Ação corporativa
+            <h2 className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]">
+              Ação corporativa
             </h2>
             <p className="font-body text-sm md:text-base text-on-surface-variant">
-              Levamos o cuidado visual diretamente para sua empresa. Em SIPATs, campanhas internas e ações corporativas, oferecendo praticidade, criando experiências que unem prevenção, bem-estar e qualidade de vida para seus colaboradores.
+              Levamos o cuidado visual diretamente para sua empresa. Em SIPATs,
+              campanhas internas e ações corporativas, oferecendo praticidade,
+              criando experiências que unem prevenção, bem-estar e qualidade de
+              vida para seus colaboradores.
             </p>
           </div>
 
@@ -143,23 +154,25 @@ export default function ProjetoCorporativo() {
                 key={svc.title}
                 className={`flex flex-col gap-3 p-6 rounded-2xl border border-[#C9A227]/20 bg-[#FFFDF8] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all anim-fade-up anim-delay-${(i + 1) * 150}`}
               >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                  style={{ background: "rgba(201,162,39,0.12)" }}
-                >
-                  <span
-                    className="material-symbols-outlined text-xl"
-                    style={{ color: "#C9A227" }}
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                    style={{ background: "rgba(201,162,39,0.12)" }}
                   >
-                    {svc.icon}
-                  </span>
+                    <span
+                      className="material-symbols-outlined text-xl"
+                      style={{ color: "#C9A227" }}
+                    >
+                      {svc.icon}
+                    </span>
+                  </div>
+                  <h3
+                    className="font-playfair text-base font-bold"
+                    style={{ color: "#2C2A24" }}
+                  >
+                    {svc.title}
+                  </h3>
                 </div>
-                <h3
-                  className="font-playfair text-base font-bold"
-                  style={{ color: "#2C2A24" }}
-                >
-                  {svc.title}
-                </h3>
                 <p className="font-body text-xs text-on-surface-variant leading-relaxed">
                   {svc.description}
                 </p>
@@ -171,8 +184,10 @@ export default function ProjetoCorporativo() {
 
       {/* ── 3. BENEFÍCIOS DA EXPERIÊNCIA ── */}
       <section className="w-full bg-[#F7F4EF] py-16 md:py-20">
-        <div ref={benefitsRef} className="max-w-[1280px] mx-auto px-4 md:px-10 flex flex-col md:flex-row items-center gap-12 md:gap-16">
-
+        <div
+          ref={benefitsRef}
+          className="max-w-[1280px] mx-auto px-4 md:px-10 flex flex-col md:flex-row items-center gap-12 md:gap-16"
+        >
           {/* Left: Arch photo */}
           <div className="flex-1 w-full flex justify-center anim-slide-left">
             <div
@@ -194,12 +209,17 @@ export default function ProjetoCorporativo() {
               className="font-display text-4xl md:text-5xl lg:text-6xl font-normal leading-none"
               style={{ color: "#C9A227" }}
             >
-              Benefícios da<br />experiência
+              Benefícios da
+              <br />
+              experiência
             </h2>
 
             <ul className="flex flex-col gap-3">
               {benefits.map((benefit, i) => (
-                <li key={benefit} className={`flex items-center gap-3 anim-fade-up anim-delay-${(i + 1) * 80}`}>
+                <li
+                  key={benefit}
+                  className={`flex items-center gap-3 anim-fade-up anim-delay-${(i + 1) * 80}`}
+                >
                   <span
                     className="material-symbols-outlined text-lg shrink-0"
                     style={{ color: "#C9A227" }}
@@ -223,11 +243,21 @@ export default function ProjetoCorporativo() {
               </p>
               <div className="flex flex-wrap gap-4 text-xs text-on-surface-variant font-body">
                 <span className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-base" style={{ color: "#C9A227" }}>call</span>
+                  <span
+                    className="material-symbols-outlined text-base"
+                    style={{ color: "#C9A227" }}
+                  >
+                    call
+                  </span>
                   (11) 93150-2102
                 </span>
                 <span className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-base" style={{ color: "#C9A227" }}>call</span>
+                  <span
+                    className="material-symbols-outlined text-base"
+                    style={{ color: "#C9A227" }}
+                  >
+                    call
+                  </span>
                   (11) 98675-6809
                 </span>
               </div>
@@ -235,7 +265,6 @@ export default function ProjetoCorporativo() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
