@@ -6,6 +6,8 @@ import LandingPage from "./pages/LandingPage";
 import Catalogo from "./pages/Catalogo";
 import ProdutoDetalhes from "./pages/ProdutoDetalhes";
 import Manutencao from "./pages/Manutencao";
+import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
+import TermosDeUso from "./pages/TermosDeUso";
 
 // Reseta scroll ao trocar de rota (para páginas fora da landing)
 function ScrollToTop() {
@@ -31,6 +33,10 @@ export default function App() {
             <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/produto/:id" element={<ProdutoDetalhes />} />
             <Route path="/manutencao" element={<Manutencao />} />
+
+            {/* Páginas legais */}
+            <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+            <Route path="/termos-de-uso" element={<TermosDeUso />} />
 
             {/* Redirect legacy routes para a landing com âncora */}
             <Route path="/ProjetoCorporativo" element={<LandingPageRedirect section="projeto-corporativo" />} />

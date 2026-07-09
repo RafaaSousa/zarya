@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const WHATSAPP_URL = "https://wa.me/5511931502102";
 
@@ -62,18 +63,18 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-2">
             <span className="font-body text-xs font-bold text-on-surface uppercase tracking-wider mb-2">Legal</span>
-            <a
+            <Link
               className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded w-fit"
-              href="#"
+              to="/politica-de-privacidade"
             >
               Política de Privacidade
-            </a>
-            <a
+            </Link>
+            <Link
               className="font-body text-sm text-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary rounded w-fit"
-              href="#"
+              to="/termos-de-uso"
             >
               Termos de Uso
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const WHATSAPP_URL = "https://wa.me/5511931502102";
 
@@ -30,6 +31,9 @@ function WhatsAppIcon({ className = "" }) {
 }
 
 export default function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isLanding = location.pathname === "/";
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
@@ -44,6 +48,15 @@ export default function Header() {
 
   // IntersectionObserver — detect which section is in view
   useEffect(() => {
+    // Fora da landing page não há seções para destacar
+    if (!isLanding) {
+      setActiveSection(null);
+      return;
+    }
+
+    // Ao (re)entrar na landing, começa no topo até o observer refinar
+    setActiveSection("home");
+
     const sectionIds = NAV_SECTIONS.map((s) => s.id);
 
     const observer = new IntersectionObserver(
@@ -77,22 +90,34 @@ export default function Header() {
       clearTimeout(timer);
       observer.disconnect();
     };
-  }, []);
+  }, [isLanding]);
 
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
 
-  const handleNavClick = useCallback((sectionId) => {
-    setIsDrawerOpen(false);
-    // Give drawer time to close before scrolling
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        const headerHeight = 80;
-        const top = el.getBoundingClientRect().top + window.scrollY - headerHeight;
-        window.scrollTo({ top, behavior: "smooth" });
+  const handleNavClick = useCallback(
+    (sectionId) => {
+      setIsDrawerOpen(false);
+
+      const scrollToSection = () => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const headerHeight = 80;
+          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      };
+
+      if (location.pathname !== "/") {
+        // Vindo de outra página: volta à landing e aguarda montar
+        navigate("/");
+        setTimeout(scrollToSection, 350);
+      } else {
+        // Give drawer time to close before scrolling
+        setTimeout(scrollToSection, 150);
       }
-    }, 150);
-  }, []);
+    },
+    [location.pathname, navigate]
+  );
 
   return (
     <>
