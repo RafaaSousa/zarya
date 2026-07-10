@@ -24,36 +24,48 @@ function useScrollReveal(options = {}) {
 }
 
 export default function Contato() {
-  const [formData, setFormData] = useState({
+  const emptyForm = {
     companyName: "",
     contactName: "",
     cnpj: "",
     email: "",
     phone: "",
     subject: "",
-    message: ""
-  });
+    message: "",
+    website: "" // honeypot anti-spam (invisível)
+  };
+  const [formData, setFormData] = useState(emptyForm);
   const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const bannerRef = useScrollReveal();
   const sidebarRef = useScrollReveal();
   const formRef = useScrollReveal();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(false);
-      setFormData({
-        companyName: "",
-        contactName: "",
-        cnpj: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
+    if (submitting) return;
+    setError("");
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
       });
-    }, 5000);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Não foi possível enviar a mensagem.");
+      }
+      setSuccess(true);
+      setFormData(emptyForm);
+      setTimeout(() => setSuccess(false), 8000);
+    } catch (err) {
+      setError(err.message || "Erro ao enviar. Tente novamente ou use o WhatsApp.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -172,6 +184,17 @@ export default function Contato() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                {/* Honeypot anti-spam — oculto para usuários reais */}
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  className="hidden"
+                />
                 <div>
                   <label className="block font-body text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider" htmlFor="ct-companyName">Nome da Empresa</label>
                   <input
@@ -269,12 +292,24 @@ export default function Contato() {
                   />
                 </div>
 
+                {error && (
+                  <p
+                    className="bg-error-container border border-error text-on-error-container text-sm font-body px-4 py-3 rounded-lg"
+                    role="alert"
+                  >
+                    {error}
+                  </p>
+                )}
+
                 <button
-                  className="w-full bg-primary hover:bg-[#554300] text-on-primary font-body text-xs font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:-translate-y-0.5 shadow-md flex justify-center items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  className="w-full bg-primary hover:bg-[#554300] text-on-primary font-body text-xs font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:-translate-y-0.5 shadow-md flex justify-center items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   type="submit"
+                  disabled={submitting}
                 >
-                  <span>Enviar Mensagem</span>
-                  <span className="material-symbols-outlined text-[18px]" aria-hidden="true">send</span>
+                  <span>{submitting ? "Enviando..." : "Enviar Mensagem"}</span>
+                  <span className="material-symbols-outlined text-[18px]" aria-hidden="true">
+                    {submitting ? "progress_activity" : "send"}
+                  </span>
                 </button>
               </form>
             )}
