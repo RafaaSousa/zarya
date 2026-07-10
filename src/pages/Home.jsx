@@ -151,14 +151,6 @@ function Hero() {
         </a>
       </div>
 
-      {/* Seta scroll */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40" aria-hidden="true">
-        <span className="font-body text-[10px] tracking-widest uppercase text-on-surface-variant">scroll</span>
-        <span className="material-symbols-outlined text-[20px] text-primary float-animation">
-          keyboard_arrow_down
-        </span>
-      </div>
-
       {/* Linha rodapé */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-24 md:h-32"
