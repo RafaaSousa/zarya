@@ -91,7 +91,6 @@ function Hero() {
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 md:h-32"
         aria-hidden="true"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,39,0.4))" }}
       />
 
       {/* Logo (vertical: olho centralizado sobre o nome, alinhado ao centro) */}
@@ -125,7 +124,6 @@ function Hero() {
       <div
         className="my-8 md:my-12 w-12 h-px"
         aria-hidden="true"
-        style={{ background: "linear-gradient(to right, transparent, #C9A227, transparent)" }}
       />
 
       {/* CTAs */}
@@ -155,7 +153,6 @@ function Hero() {
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-24 md:h-32"
         aria-hidden="true"
-        style={{ background: "linear-gradient(to top, transparent, rgba(201,162,39,0.4))" }}
       />
     </div>
   );
