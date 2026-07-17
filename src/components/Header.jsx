@@ -5,6 +5,7 @@ const WHATSAPP_URL = "https://wa.me/5511931502102";
 
 const NAV_SECTIONS = [
   { id: "home", label: "INÍCIO" },
+  { id: "campanhas", label: "CAMPANHAS" },
   { id: "projeto-corporativo", label: "PROJETO CORPORATIVO" },
   { id: "contatos", label: "CONTATOS" },
 ];

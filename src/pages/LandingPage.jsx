@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./Home";
 import ProjetoCorporativo from "./ProjetoCorporativo";
+import Campanhas from "./Campanhas";
 import Contato from "./Contato";
 
 // ─── Divisor visual entre seções ─────────────────────────────────────────
@@ -36,7 +37,20 @@ export default function LandingPage() {
       <SectionDivider />
 
       {/* ════════════════════════════════
-          SEÇÃO 2 — PROJETO CORPORATIVO
+          SEÇÃO 2 — CAMPANHAS
+      ════════════════════════════════ */}
+      <section
+        id="campanhas"
+        className="scroll-section"
+        aria-label="Campanhas Zaryá nas empresas"
+      >
+        <Campanhas />
+      </section>
+
+      <SectionDivider />
+
+      {/* ════════════════════════════════
+          SEÇÃO 3 — PROJETO CORPORATIVO
       ════════════════════════════════ */}
       <section
         id="projeto-corporativo"
@@ -49,7 +63,7 @@ export default function LandingPage() {
       <SectionDivider />
 
       {/* ════════════════════════════════
-          SEÇÃO 3 — CONTATOS
+          SEÇÃO 4 — CONTATOS
       ════════════════════════════════ */}
       <section
         id="contatos"

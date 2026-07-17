@@ -360,7 +360,7 @@ function IdealPara() {
           <span className="font-body text-xs font-bold tracking-[0.3em] uppercase text-primary mb-3 block">
             Segmentos
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-[#C9A227]">
+          <h2 className="font-display text-4xl md:text-6xl font-normal text-[#C9A227]">
             Ideal para
           </h2>
         </div>
