@@ -79,7 +79,7 @@ export default function Campanhas() {
         <div className="relative z-10 px-4 md:px-10 mb-8 md:mb-10">
           <div className="max-w-[1280px] mx-auto flex flex-wrap items-end justify-between gap-4">
             <div className="flex flex-col gap-2 anim-fade-up">
-              <h2 className="font-display text-6xl md:text-7xl lg:text-8xl font-normal leading-none text-[#C9A227]">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-8xl font-normal leading-none text-[#C9A227]">
                 Campanhas
               </h2>
             </div>
