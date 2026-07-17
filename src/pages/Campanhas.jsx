@@ -1,4 +1,28 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
+
+// ─── Hook de scroll reveal (mesmo padrão das outras seções) ───────────────
+function useScrollReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+          el.querySelectorAll(
+            ".anim-fade-up, .anim-slide-left, .anim-slide-right, .anim-scale",
+          ).forEach((child) => child.classList.add("is-visible"));
+          observer.unobserve(el);
+        }
+      },
+      { threshold },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
 
 // ─── Carrega automaticamente todas as fotos das campanhas ─────────────────
 const modules = import.meta.glob(
@@ -16,6 +40,7 @@ const campanhas = Object.entries(modules)
 
 export default function Campanhas() {
   const trackRef = useRef(null);
+  const revealRef = useScrollReveal(0.15);
 
   // Avança/retrocede 1 card por clique nas setas.
   // Usa scrollTo absoluto (para um snap-point exato) em vez de scrollBy
@@ -36,7 +61,10 @@ export default function Campanhas() {
 
   return (
     <div className="bg-[#2C2A24]">
-      <section className="relative w-full overflow-hidden bg-[#2C2A24] py-16 md:py-24">
+      <section
+        ref={revealRef}
+        className="relative w-full overflow-hidden bg-[#2C2A24] py-16 md:py-24"
+      >
         {/* Gradiente decorativo dourado */}
         <div
           className="pointer-events-none absolute inset-0"
@@ -50,14 +78,14 @@ export default function Campanhas() {
         {/* Cabeçalho */}
         <div className="relative z-10 px-4 md:px-10 mb-8 md:mb-10">
           <div className="max-w-[1280px] mx-auto flex flex-wrap items-end justify-between gap-4">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 anim-fade-up">
               <h2 className="font-display text-6xl md:text-7xl lg:text-8xl font-normal leading-none text-[#C9A227]">
                 Campanhas
               </h2>
             </div>
 
             {/* Setas de navegação (desktop) */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3 anim-fade-up anim-delay-200">
               <button
                 type="button"
                 onClick={() => scrollByCard(-1)}
@@ -87,10 +115,10 @@ export default function Campanhas() {
           ref={trackRef}
           className="hide-scrollbar relative z-10 flex items-stretch gap-5 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 md:px-10 pb-2"
         >
-          {campanhas.map((foto) => (
+          {campanhas.map((foto, i) => (
             <figure
               key={foto.key}
-              className="group relative flex-shrink-0 snap-start overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[#C9A227]/20 w-[85vw] sm:w-[64vw] md:w-[52vw] lg:w-[44vw] h-[60vh] md:h-[66vh]"
+              className={`group relative flex-shrink-0 snap-start overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[#C9A227]/20 w-[85vw] sm:w-[64vw] md:w-[52vw] lg:w-[44vw] h-[60vh] md:h-[66vh] anim-fade-up anim-delay-${Math.min((i + 1) * 100, 600)}`}
             >
               {/* eager: são poucas fotos e ficam lado a lado num carrossel */}
               <img
